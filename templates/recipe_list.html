@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-center mb-4">All Recipes</h2>
+
+<div class="row">
+    {% for recipe in recipes%}
+    <div class="col-md-4 mb-4">
+        <div class="card" style="width: 18rem;">
+            {% if recipe.image%}
+            <img src="{{ recipe.image.url }}" class="card-img-top " height="250" alt="...">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.recipe_name }}</h5>
+                <p><strong>Category:</strong>{{recipe.category}}</p>
+                <p><strong>Cooking Time</strong>{{ recipe.cooking_time}} minutes</p>
+                <p><strong>ingredients:</strong>ingredients{{ recipe.ingredients|truncatewords:10}}</p>
+
+                <a href="{% url 'view_details' recipe.pk %}" class="btn btn-primary">View</a>
+                <a href="{% url 'update' recipe.pk %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'delete' recipe.id %}" class="btn btn-primary">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-info text-center">No Recipe Found.</div>
+    {% endfor %}
+</div>
+{% endblock %}

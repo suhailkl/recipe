@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+            {% if recipe.image %}
+
+            <img src="{{ recipe.image.url }}" class="card-img-top" height="400">
+
+            {% endif %}
+
+            <div class="card-body">
+
+                <h2 class="card-title text-success">
+
+                    {{ recipe.recipe_name }}
+
+                </h2>
+
+                <hr>
+
+                <p>
+
+                    <strong>Category :</strong>
+
+                    {{ recipe.category }}
+
+                </p>
+
+                <p><strong>Cooking Time :</strong>{{ recipe.cooking_time }} Minutes</p>
+
+                <p><strong>Ingredients :</strong>
+</p>
+
+                <div class="border rounded p-3 bg-light"> {{ recipe.ingredients|linebreaks }}</div>
+
+                <br>
+
+                <p>
+
+                    <strong>Preparation :</strong>
+
+                </p>
+
+                <div class="border rounded p-3 bg-light">
+
+                    {{ recipe.preparation|linebreaks }}
+
+                </div>
+
+                <br>
+
+                <p>
+
+                    <strong>Created On :</strong>
+
+                    {{ recipe.created_at }}
+
+                </p>
+
+            </div>
+
+            <div class="card-footer text-center">
+
+                <a href="{% url 'update' recipe.pk %}" class="btn btn-warning">
+
+                    Edit
+
+                </a>
+
+                <a href="{% url 'delete' recipe.id %}" class="btn btn-danger">
+
+                    Delete
+
+                </a>
+
+                <a href="{% url 'recipe_list' %}" class="btn btn-secondary">
+
+                    Back
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

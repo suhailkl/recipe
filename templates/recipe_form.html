@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">
+                    {% if form.instance.pk %}
+                        Update Recipe
+                    {% else %}
+                        Add New Recipe
+                    {% endif %}
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a href="{% url 'recipe_list' %}" class="btn btn-danger">Cancel</a>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
